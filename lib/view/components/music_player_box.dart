@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
 class MusicPlayerBox extends StatelessWidget {
+  final String? title, coverImageURL;
+
+  MusicPlayerBox({this.title, @required this.coverImageURL});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          width: 100,
-          height: 100,
+          width: MediaQuery.of(context).size.width - 75,
+          height: 175,
           decoration: BoxDecoration(
-            color: Colors.red,
             borderRadius: BorderRadius.circular(5.0),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5.0,
-                spreadRadius: 2.5,
-                offset: Offset(10.0, 10.0),
+                color: Colors.grey[350]!,
+                blurRadius: 2.0,
+                spreadRadius: 2.0,
+                offset: Offset(0.25, 4.0),
               ),
             ],
             image: DecorationImage(
-              image: AssetImage('assets/images/music-sample-one.jpg'),
+              image: AssetImage(coverImageURL!),
               fit: BoxFit.cover,
             ),
           ),
