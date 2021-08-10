@@ -44,17 +44,24 @@ class HomePage extends StatelessWidget {
         ],
         iconTheme: IconThemeData(color: Colors.green),
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(vertical: 30.0),
-        child: CarouselSlider(
-          items: musicRepository
-              .map(
-                  (music) => MusicPlayerBox(coverImageURL: music.coverImageURL))
-              .toList(),
-          options: CarouselOptions(
-            enlargeCenterPage: true,
-            enableInfiniteScroll: true,
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 30.0),
+              child: CarouselSlider(
+                items: musicRepository
+                    .map((music) =>
+                        MusicPlayerBox(coverImageURL: music.coverImageURL))
+                    .toList(),
+                options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: true,
+                ),
+              ),
+            ),
+            Directionality(textDirection: TextDirection.rtl, child: Text(""))
+          ],
         ),
       ),
     );

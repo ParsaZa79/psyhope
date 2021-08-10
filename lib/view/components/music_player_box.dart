@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class MusicPlayerBox extends StatelessWidget {
+class MusicPlayerBox extends StatefulWidget {
   final String? title, coverImageURL;
+  final bool? playStatus;
 
-  MusicPlayerBox({this.title, @required this.coverImageURL});
+  MusicPlayerBox({this.title, @required this.coverImageURL, this.playStatus});
+
+  @override
+  _MusicPlayerBoxState createState() => _MusicPlayerBoxState();
+}
+
+class _MusicPlayerBoxState extends State<MusicPlayerBox> {
+  bool? get _isPlayedGetter => widget.playStatus ?? false;
+  bool? _isPlayed;
+  @override
+  void initState() {
+    super.initState();
+    _isPlayed = _isPlayedGetter!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +39,22 @@ class MusicPlayerBox extends StatelessWidget {
               ),
             ],
             image: DecorationImage(
-              image: AssetImage(coverImageURL!),
+              image: AssetImage(widget.coverImageURL!),
               fit: BoxFit.cover,
             ),
           ),
         ),
         Icon(
-          Icons.play_circle_fill_sharp,
+          (!_isPlayed!)
+              ? Icons.play_circle_fill_sharp
+              : Icons.pause_circle_filled_sharp,
           size: 75,
-          color: Colors.grey[200],
-        ),
+          color: Color.fromRGBO(250, 250, 250, 0.5),
+        ).onTap(() {
+          setState(() {
+            _isPlayed = !_isPlayed!;
+          });
+        }),
       ],
     );
   }
