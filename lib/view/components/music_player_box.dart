@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MusicPlayerBox extends StatelessWidget {
   final String? title, coverImageURL;
@@ -8,6 +9,7 @@ class MusicPlayerBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         Container(
           width: MediaQuery.of(context).size.width - 75,
@@ -19,7 +21,7 @@ class MusicPlayerBox extends StatelessWidget {
                 color: Colors.grey[350]!,
                 blurRadius: 2.0,
                 spreadRadius: 2.0,
-                offset: Offset(0.25, 4.0),
+                offset: Offset(1.0, 4.0),
               ),
             ],
             image: DecorationImage(
@@ -27,6 +29,11 @@ class MusicPlayerBox extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+        ),
+        Icon(
+          Icons.play_circle_fill_sharp,
+          size: 75,
+          color: Colors.grey[200],
         ),
       ],
     );
