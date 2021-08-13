@@ -60,7 +60,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Directionality(textDirection: TextDirection.rtl, child: Text(""))
           ],
         ),
       ),
